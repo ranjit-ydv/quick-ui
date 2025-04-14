@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GustoRx - Revolutionary Health Solutions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .animate-spin-slow {
+      animation: spin-slow 20s linear infinite;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .fade-in.appear {
+      opacity: 1;
+    }
+
+    .slide-up {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .slide-up.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered animation delay for multiple elements */
+    .stagger-delay-1 { transition-delay: 0.1s; }
+    .stagger-delay-2 { transition-delay: 0.2s; }
+    .stagger-delay-3 { transition-delay: 0.3s; }
+    .stagger-delay-4 { transition-delay: 0.4s; }
+  </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm fixed w-full z-50" x-data="{ mobileMenuOpen: false }">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 flex items-center">
+            <img class="h-10 w-auto" src="./assets/gustorx-logo-black.svg" alt="GustoRx Logo">
+          </div>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex md:items-center md:space-x-8">
+          <a href="#features" class="text-gray-700 hover:text-sky-500 px-3 py-2 text-sm font-medium transition duration-300">Features</a>
+          <a href="#products" class="text-gray-700 hover:text-sky-500 px-3 py-2 text-sm font-medium transition duration-300">Products</a>
+          <a href="#team" class="text-gray-700 hover:text-sky-500 px-3 py-2 text-sm font-medium transition duration-300">Team</a>
+          <a href="#testimonials" class="text-gray-700 hover:text-sky-500 px-3 py-2 text-sm font-medium transition duration-300">Testimonials</a>
+          <a href="#contact" class="bg-black text-white hover:bg-gray-800 px-4 py-2 rounded-md text-sm font-medium transition duration-300">Get Started</a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="flex items-center md:hidden">
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-sky-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sky-500">
+            <span class="sr-only">Open main menu</span>
+            <svg class="h-6 w-6" x-show="!mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg class="h-6 w-6" x-show="mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div x-show="mobileMenuOpen" class="md:hidden bg-white shadow-lg">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-sky-500 hover:bg-gray-100">Features</a>
+        <a href="#products" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-sky-500 hover:bg-gray-100">Products</a>
+        <a href="#team" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-sky-500 hover:bg-gray-100">Team</a>
+        <a href="#testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-sky-500 hover:bg-gray-100">Testimonials</a>
+        <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium bg-black text-white hover:bg-gray-800">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="pt-24 pb-16 md:pt-32 md:pb-24 bg-black text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 slide-up">
+            Revolutionizing Health & Wellness Solutions
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 text-gray-300 slide-up stagger-delay-1">
+            Join the revolution in digital healthcare with innovative treatments, cutting-edge technology, and a mission to empower everyone to achieve their peak potential.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 slide-up stagger-delay-2">
+            <a href="#contact" class="bg-white text-black hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition duration-300 text-center">
+              Get Started Today
+            </a>
+            <a href="#learn-more" class="border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 rounded-lg text-lg font-semibold transition duration-300 text-center">
+              Learn More
+            </a>
+          </div>
+        </div>
+        <div class="md:w-1/2 flex justify-center">
+          <div class="relative">
+            <div class="w-64 h-64 md:w-80 md:h-80 bg-sky-500 bg-opacity-30 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-spin-slow"></div>
+            <img src="./assets/product.png" alt="Product" class="relative z-10 animate-float h-[400px] w-[400px]">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black fade-in">A $200 Billion Opportunity</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in stagger-delay-1">
+          GustoRx is leading the charge in four explosive markets: weight management, performance enhancement, wellness optimization, and personalized health solutions.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Feature 1 -->
+        <div class="bg-gray-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition duration-300 slide-up">
+          <div class="text-sky-500 mb-4">
+            <i class="fas fa-weight text-4xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Weight Management</h3>
+          <p class="text-gray-600">$49.3B market in 2024, projected to hit $157.5B by 2035.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-gray-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition duration-300 slide-up stagger-delay-1">
+          <div class="text-sky-500 mb-4">
+            <i class="fas fa-bolt text-4xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Performance Enhancement</h3>
+          <p class="text-gray-600">$4.7B market by 2026, with consistent year-over-year growth.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-gray-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition duration-300 slide-up stagger-delay-2">
+          <div class="text-sky-500 mb-4">
+            <i class="fas fa-seedling text-4xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Wellness Optimization</h3>
+          <p class="text-gray-600">$3.03B by 2029, with increasing demand for holistic solutions.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="bg-gray-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition duration-300 slide-up stagger-delay-3">
+          <div class="text-sky-500 mb-4">
+            <i class="fas fa-heartbeat text-4xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Personalized Health</h3>
+          <p class="text-gray-600">$2.2B in 2023, with rapid adoption of customized solutions.</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 fade-in">
+        <p class="text-2xl font-semibold text-black">Even capturing a small slice of these markets could generate exponential growth for GustoRx — and your investment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="py-16 md:py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <img src="https://fakeimg.pl/600x400/000000/FFFFFF?text=Our+Mission" alt="Our Mission" class="rounded-xl shadow-xl fade-in">
+        </div>
+        <div class="md:w-1/2 md:pl-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-black slide-up">Our Mission: To Empower People Everywhere</h2>
+          <p class="text-xl text-gray-700 mb-6 slide-up stagger-delay-1">
+            Our founder saw a massive gap in healthcare—a space dominated by stigma, outdated solutions, and impersonal care. They envisioned a brand that would not only deliver innovative products but also transform the way people approach their health.
+          </p>
+          <p class="text-xl text-gray-700 italic slide-up stagger-delay-2">
+            "From busy professionals to active individuals, people were silently struggling. GustoRx was created to give them their edge back—with convenience, discretion, and science-backed results."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black fade-in">Leadership Team</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in stagger-delay-1">
+          Meet the visionaries behind GustoRx who are dedicated to transforming the health and wellness industry.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Team Member 1 -->
+        <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 slide-up">
+          <img src="https://fakeimg.pl/400x300/000000/FFFFFF?text=CEO" alt="CEO" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-1">Alex Morgan</h3>
+            <p class="text-sky-500 mb-4">CO-FOUNDER & CHIEF EXECUTIVE OFFICER</p>
+            <p class="text-gray-600">
+              A serial entrepreneur with over 20 years of experience in healthcare innovation and capital markets. Has founded and grown multiple companies in various sectors.
+            </p>
+          </div>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 slide-up stagger-delay-1">
+          <img src="https://fakeimg.pl/400x300/000000/FFFFFF?text=COO" alt="COO" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-1">Jamie Taylor</h3>
+            <p class="text-sky-500 mb-4">CHIEF OPERATING OFFICER</p>
+            <p class="text-gray-600">
+              Joined GustoRx in 2022 and has been vital in launching and optimizing its eCommerce platform. Has a successful leadership background in multiple industries.
+            </p>
+          </div>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 slide-up stagger-delay-2">
+          <img src="https://fakeimg.pl/400x300/000000/FFFFFF?text=CFO" alt="CFO" class="w-full h-64 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-1">Jordan Smith</h3>
+            <p class="text-sky-500 mb-4">CHIEF FINANCIAL OFFICER</p>
+            <p class="text-gray-600">
+              Has been the CFO since 2022. Has held leadership positions in various companies, including serving as Audit Manager at major financial institutions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 fade-in">
+        <p class="text-2xl font-semibold text-black">When you partner with GustoRx, you're not just funding a company—you're fueling a movement that's changing lives.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Products Section -->
+<section id="products" class="py-16 md:py-24 bg-black text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 fade-in">Revolutionary Products Backed by Science</h2>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto fade-in stagger-delay-1">
+        GustoRx sets a new standard by offering advanced, science-backed solutions in revolutionary formats. Our innovations address physiological, psychological, and emotional aspects of health in ways that are faster, more discreet, and more effective than traditional methods.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <!-- Product 1 -->
+      <div class="flex flex-col md:flex-row items-center bg-white bg-opacity-10 rounded-xl p-6 backdrop-blur-sm slide-up">
+        <div class="md:w-1/3 mb-6 md:mb-0">
+          <img src="https://fakeimg.pl/300x300/000000/FFFFFF?text=Slim" alt="Slim Product" class="w-full rounded-lg shadow-lg">
+        </div>
+        <div class="md:w-2/3 md:pl-6">
+          <h3 class="text-2xl font-bold mb-2">Slim</h3>
+          <p class="text-xl font-semibold mb-4">Advanced Weight Management</p>
+          <p class="text-gray-300 mb-4">
+            A revolutionary weight management solution that enhances satiety and regulates metabolism.
+          </p>
+          <p class="font-semibold text-sky-300">
+            Innovation: A fast-absorbing format for rapid results without the inconvenience of traditional methods.
+          </p>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="flex flex-col md:flex-row items-center bg-white bg-opacity-10 rounded-xl p-6 backdrop-blur-sm slide-up stagger-delay-1">
+        <div class="md:w-1/3 mb-6 md:mb-0">
+          <img src="https://fakeimg.pl/300x300/000000/FFFFFF?text=Boost" alt="Boost Product" class="w-full rounded-lg shadow-lg">
+        </div>
+        <div class="md:w-2/3 md:pl-6">
+          <h3 class="text-2xl font-bold mb-2">Boost</h3>
+          <p class="text-xl font-semibold mb-4">Performance Enhancement</p>
+          <p class="text-gray-300 mb-4">
+            A fast-acting performance enhancement treatment for improved energy and vitality.
+          </p>
+          <p class="font-semibold text-sky-300">
+            Innovation: Combines key compounds with natural enhancers for improved satisfaction and results.
+          </p>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="flex flex-col md:flex-row items-center bg-white bg-opacity-10 rounded-xl p-6 backdrop-blur-sm slide-up stagger-delay-2">
+        <div class="md:w-1/3 mb-6 md:mb-0">
+          <img src="https://fakeimg.pl/300x300/000000/FFFFFF?text=Grow" alt="Grow Product" class="w-full rounded-lg shadow-lg">
+        </div>
+        <div class="md:w-2/3 md:pl-6">
+          <h3 class="text-2xl font-bold mb-2">Grow</h3>
+          <p class="text-xl font-semibold mb-4">Wellness Optimization</p>
+          <p class="text-gray-300 mb-4">
+            A comprehensive wellness solution addressing multiple aspects of personal health.
+          </p>
+          <p class="font-semibold text-sky-300">
+            Innovation: A subscription-based formula for ease of use and better compliance with health goals.
+          </p>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="flex flex-col md:flex-row items-center bg-white bg-opacity-10 rounded-xl p-6 backdrop-blur-sm slide-up stagger-delay-3">
+        <div class="md:w-1/3 mb-6 md:mb-0">
+          <img src="https://fakeimg.pl/300x300/000000/FFFFFF?text=Vitality" alt="Vitality Product" class="w-full rounded-lg shadow-lg">
+        </div>
+        <div class="md:w-2/3 md:pl-6">
+          <h3 class="text-2xl font-bold mb-2">Vitality</h3>
+          <p class="text-xl font-semibold mb-4">Energy & Balance</p>
+          <p class="text-gray-300 mb-4">
+            An energy-boosting therapy that preserves natural balance and enhances daily performance.
+          </p>
+          <p class="font-semibold text-sky-300">
+            Innovation: Uses natural compounds to enhance energy and hormonal balance without side effects.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-16 fade-in">
+      <p class="text-2xl font-semibold mb-8">Through our exclusive partnerships, GustoRx ensures seamless, discreet delivery of treatments, enhancing customer privacy and satisfaction.</p>
+      <a href="#contact" class="inline-block bg-white text-black hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition duration-300">
+        Learn More About Our Products
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Technology Section -->
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black fade-in">The Technology Behind the Innovation</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in stagger-delay-1">
+        Our state-of-the-art platform powers everything from consultations to product fulfillment. It's scalable, secure, and designed for global expansion.
+      </p>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-10 md:mb-0">
+        <img src="https://fakeimg.pl/600x400/000000/FFFFFF?text=Technology+Platform" alt="Technology Platform" class="rounded-xl shadow-xl fade-in">
+      </div>
+      <div class="md:w-1/2 md:pl-12">
+        <ul class="space-y-6">
+          <li class="flex items-start slide-up">
+            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-black flex items-center justify-center text-white">
+              <i class="fas fa-tablet-alt"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-xl font-bold mb-1">Advanced Delivery Technology</h3>
+              <p class="text-gray-600">Ensures faster absorption and quicker onset compared to traditional tablets or injections.</p>
+            </div>
+          </li>
+          <li class="flex items-start slide-up stagger-delay-1">
+            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-black flex items-center justify-center text-white">
+              <i class="fas fa-flask"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-xl font-bold mb-1">Proprietary Blends</h3>
+              <p class="text-gray-600">Synergistic combinations of proven ingredients maximize efficacy while minimizing side effects.</p>
+            </div>
+          </li>
+          <li class="flex items-start slide-up stagger-delay-2">
+            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-black flex items-center justify-center text-white">
+              <i class="fas fa-laptop-medical"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-xl font-bold mb-1">AI-Driven Health Platform</h3>
+              <p class="text-gray-600">Personalized recommendations and tracking for optimal results and customer satisfaction.</p>
+            </div>
+          </li>
+          <li class="flex items-start slide-up stagger-delay-3">
+            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-black flex items-center justify-center text-white">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-xl font-bold mb-1">Privacy-First Approach</h3>
+              <p class="text-gray-600">HIPAA-compliant data protection and discreet packaging for customer confidence.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-center mt-12 fade-in">
+      <p class="text-2xl font-semibold text-black">This isn't just a healthcare company—it's a tech-first disruptor in digital health.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="py-16 md:py-24 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black fade-in">What Our Customers Say</h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in stagger-delay-1">
+        Hear from people who have experienced the GustoRx difference in their lives.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Testimonial 1 -->
+      <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition duration-300 slide-up">
+        <div class="flex items-center mb-4">
+          <div class="text-sky-500">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+        <p class="text-gray-600 mb-6 italic">
+          "GustoRx has completely transformed my approach to wellness. The products are effective, and the personalized support is unmatched. I've never felt better!"
+        </p>
+        <div class="flex items-center">
+          <img src="https://fakeimg.pl/60x60/000000/FFFFFF?text=M" alt="Customer" class="h-12 w-12 rounded-full">
+          <div class="ml-4">
+            <h4 class="font-bold">Michael K.</h4>
+            <p class="text-gray-500 text-sm">Executive, 42</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition duration-300 slide-up stagger-delay-1">
+        <div class="flex items-center mb-4">
+          <div class="text-sky-500">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+        <p class="text-gray-600 mb-6 italic">
+          "I was skeptical at first, but the results speak for themselves. The convenience of the delivery and the effectiveness of the products have made me a loyal customer."
+        </p>
+        <div class="flex items-center">
+          <img src="https://fakeimg.pl/60x60/000000/FFFFFF?text=S" alt="Customer" class="h-12 w-12 rounded-full">
+          <div class="ml-4">
+            <h4 class="font-bold">Sarah L.</h4>
+            <p class="text-gray-500 text-sm">Fitness Instructor, 35</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition duration-300 slide-up stagger-delay-2">
+        <div class="flex items-center mb-4">
+          <div class="text-sky-500">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </div>
+        <p class="text-gray-600 mb-6 italic">
+          "The difference in my energy levels and overall well-being has been remarkable. The subscription model makes it easy to stay consistent with my health goals."
+        </p>
+        <div class="flex items-center">
+          <img src="https://fakeimg.pl/60x60/000000/FFFFFF?text=D" alt="Customer" class="h-12 w-12 rounded-full">
+          <div class="ml-4">
+            <h4 class="font-bold">David R.</h4>
+            <p class="text-gray-500 text-sm">Engineer, 38</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section id="contact" class="py-16 md:py-24 bg-black text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-10 md:mb-0">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 slide-up">Ready to Transform Your Health Journey?</h2>
+        <p class="text-xl text-gray-300 mb-8 slide-up stagger-delay-1">
+          Join thousands of satisfied customers who have experienced the GustoRx difference. Get started today with our personalized health solutions.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 slide-up stagger-delay-2">
+          <a href="#" class="bg-white text-black hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition duration-300 text-center">
+            Get Started Now
+          </a>
+          <a href="#" class="border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 rounded-lg text-lg font-semibold transition duration-300 text-center">
+            Contact Sales
+          </a>
+        </div>
+      </div>
+      <div class="md:w-1/2 md:pl-12">
+        <div class="bg-white bg-opacity-10 rounded-xl p-8 backdrop-blur-sm fade-in">
+          <h3 class="text-2xl font-bold mb-6">Request More Information</h3>
+          <form>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label for="first-name" class="block text-sm font-medium mb-1">First Name*</label>
+                <input type="text" id="first-name" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-gray-300 text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white">
+              </div>
+              <div>
+                <label for="last-name" class="block text-sm font-medium mb-1">Last Name*</label>
+                <input type="text" id="last-name" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-gray-300 text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white">
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="email" class="block text-sm font-medium mb-1">Email*</label>
+              <input type="email" id="email" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-gray-300 text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white">
+            </div>
+            <div class="mb-6">
+                <label for="phone" class="block text-sm font-medium mb-1">Phone Number*</label>
+                <input type="tel" id="phone" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-20 border border-gray-300 text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white">
+              </div>
+              <div class="mb-6">
+                <label class="flex items-center">
+                  <input type="checkbox" class="h-5 w-5 rounded text-sky-500 focus:ring-sky-500 border-gray-300">
+                  <span class="ml-2 text-sm">I consent to receive notifications, alerts & occasional marketing communications. Message & data rates may apply.</span>
+                </label>
+              </div>
+              <button type="submit" class="w-full bg-white text-black hover:bg-gray-100 px-6 py-3 rounded-lg text-lg font-semibold transition duration-300">
+                Get Information Now
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black fade-in">Frequently Asked Questions</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto fade-in stagger-delay-1">
+          Find answers to common questions about our products and services.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto" x-data="{selected:null}">
+        <!-- FAQ Item 1 -->
+        <div class="mb-4 border border-gray-200 rounded-lg overflow-hidden">
+          <button
+            @click="selected !== 1 ? selected = 1 : selected = null"
+            class="flex items-center justify-between w-full p-5 text-left bg-white hover:bg-gray-50"
+          >
+            <span class="text-lg font-semibold">What makes GustoRx products different?</span>
+            <svg class="w-6 h-6 text-sky-500" :class="{'rotate-180': selected == 1}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div x-show="selected == 1" class="p-5 border-t border-gray-200 bg-gray-50">
+            <p class="text-gray-600">
+              Our products utilize advanced delivery technology for faster absorption and greater convenience. Combined with our proprietary blends and AI-driven platform, we offer a seamless, effective, and personalized health experience.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="mb-4 border border-gray-200 rounded-lg overflow-hidden">
+          <button
+            @click="selected !== 2 ? selected = 2 : selected = null"
+            class="flex items-center justify-between w-full p-5 text-left bg-white hover:bg-gray-50"
+          >
+            <span class="text-lg font-semibold">How do I get started with GustoRx?</span>
+            <svg class="w-6 h-6 text-sky-500" :class="{'rotate-180': selected == 2}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div x-show="selected == 2" class="p-5 border-t border-gray-200 bg-gray-50">
+            <p class="text-gray-600">
+              Getting started is easy! Simply fill out the contact form on our website, and one of our health consultants will reach out to discuss your specific needs and recommend the best products for you. You can also browse our product catalog directly and make a purchase online.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="mb-4 border border-gray-200 rounded-lg overflow-hidden">
+          <button
+            @click="selected !== 3 ? selected = 3 : selected = null"
+            class="flex items-center justify-between w-full p-5 text-left bg-white hover:bg-gray-50"
+          >
+            <span class="text-lg font-semibold">Are GustoRx products safe?</span>
+            <svg class="w-6 h-6 text-sky-500" :class="{'rotate-180': selected == 3}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div x-show="selected == 3" class="p-5 border-t border-gray-200 bg-gray-50">
+            <p class="text-gray-600">
+              Yes, all our products comply with applicable regulatory requirements and undergo rigorous testing for safety and efficacy. We use high-quality ingredients and maintain strict quality control standards throughout our production process.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="mb-4 border border-gray-200 rounded-lg overflow-hidden">
+          <button
+            @click="selected !== 4 ? selected = 4 : selected = null"
+            class="flex items-center justify-between w-full p-5 text-left bg-white hover:bg-gray-50"
+          >
+            <span class="text-lg font-semibold">How does the subscription model work?</span>
+            <svg class="w-6 h-6 text-sky-500" :class="{'rotate-180': selected == 4}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div x-show="selected == 4" class="p-5 border-t border-gray-200 bg-gray-50">
+            <p class="text-gray-600">
+              Our subscription model provides regular deliveries of your chosen products at a frequency that works for you. Subscribers enjoy special pricing, priority access to new products, and the convenience of automatic refills. You can pause, modify, or cancel your subscription at any time.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="mb-4 border border-gray-200 rounded-lg overflow-hidden">
+          <button
+            @click="selected !== 5 ? selected = 5 : selected = null"
+            class="flex items-center justify-between w-full p-5 text-left bg-white hover:bg-gray-50"
+          >
+            <span class="text-lg font-semibold">What kind of support do you offer?</span>
+            <svg class="w-6 h-6 text-sky-500" :class="{'rotate-180': selected == 5}" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div x-show="selected == 5" class="p-5 border-t border-gray-200 bg-gray-50">
+            <p class="text-gray-600">
+              We provide dedicated customer support to assist with product inquiries, orders, and any other questions. Our health consultants are also available for personalized guidance on product selection and usage. Premium subscribers receive access to one-on-one consultations and additional resources.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Company Info -->
+        <div class="col-span-1 md:col-span-1">
+          <img class="h-10 w-auto mb-4" src="./assets/gustorx-logo-white.svg" alt="GustoRx Logo">
+          <p class="text-gray-300 mb-4">
+            Revolutionizing health and wellness with innovative solutions and personalized care.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-300 hover:text-white transition duration-300">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition duration-300">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition duration-300">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition duration-300">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="#features" class="text-gray-300 hover:text-white transition duration-300">Features</a></li>
+            <li><a href="#products" class="text-gray-300 hover:text-white transition duration-300">Products</a></li>
+            <li><a href="#team" class="text-gray-300 hover:text-white transition duration-300">Team</a></li>
+            <li><a href="#testimonials" class="text-gray-300 hover:text-white transition duration-300">Testimonials</a></li>
+            <li><a href="#contact" class="text-gray-300 hover:text-white transition duration-300">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Products -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Products</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Slim</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Boost</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Grow</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">Vitality</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-white transition duration-300">All Products</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+          <ul class="space-y-2">
+            <li class="flex items-start">
+              <i class="fas fa-envelope mt-1 mr-2 text-sky-300"></i>
+              <span class="text-gray-300">info@GustoRx.com</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-phone-alt mt-1 mr-2 text-sky-300"></i>
+              <span class="text-gray-300">+1 (800) 123-4567</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-2 text-sky-300"></i>
+              <span class="text-gray-300">123 Innovation Way<br>Health District, CA 90210</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm mb-4 md:mb-0">
+          &copy; 2023 GustoRx. All rights reserved.
+        </p>
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition duration-300">Privacy Policy</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition duration-300">Terms of Service</a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm transition duration-300">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for animations -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Intersection Observer for fade-in and slide-up animations
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('appear');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      // Observe all elements with animation classes
+      document.querySelectorAll('.fade-in, .slide-up').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
